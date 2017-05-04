@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html><head>
+
+<style>
+body {
+    background-color: #FFFF99;
+}
+.container {
+    width: 500px;
+    margin: 0 auto; 
+    background: white;
+    color: black;
+    border-radius: 5px;
+    padding: 1em;
+    text-align:center;
+    overflow: auto;
+}
+.columnl {
+float:left;
+width:50%;
+}
+.columnr {
+float: left;
+width: 50%;
+}
+    
+button {margin: 10px 0px 0px 0px;}
+    
+</style>
+</head>
+<body>
+<h1 align = center>Chore Assigner</h1>
+
+<div class = "container">
+    <div class = "columnl">
+        <p><input type="text" id="nameInput" value="Name">
+        <button onclick="makeNameVar()">Assign Chore</button></p>
+        <p><u>Currently Assigned Chores</u></p>
+        <p id="printAssignedChore"></p>
+    </div>
+    <div class = "columnr">
+        <p><input type="text" id="choreInput" value="New Chore">
+        <button onclick="makeChoreVar()">Add Chore</button></p>
+        <p><u>Unassigned Chores</u></p>
+        <p id= "printArrayList"></p>
+    </div>
+</div>
+
+<script>
+var choreList = ["Clean the Toilet", "Vacuum the ENTIRE house", "Wash the Dishes", "Pickup your Room", "Make your Bed", "Clean the Cat Box"];
+function makeNameVar() {
+    var nameVar = document.getElementById("nameInput").value;
+    document.getElementById("printAssignedChore").innerHTML +=  nameVar + ", " + chorePicker(choreList) + "<br>";
+    document.getElementById("printArrayList").innerHTML = choreList.join("<br>");
+}
+function chorePicker(chore) {
+   if (choreList.length === 0){ 
+     return ("looks like your lucky day. There are no more chores left!");
+   } else {
+     var i = Math.floor(Math.random() * chore.length);
+     return chore.splice(i-1,1);
+     return chore[i];
+   }
+}
+function makeChoreVar() {
+    var choreVar = document.getElementById("choreInput").value;
+    choreList.push(choreVar)
+    document.getElementById("printArrayList").innerHTML = choreList.join("<br>");
+}
+document.getElementById("printArrayList").innerHTML = choreList.join("<br>");
+</script>
+</body>
+</html>
